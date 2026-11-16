@@ -1,0 +1,308 @@
+.safeAIPage {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* מרכז את כל הצ'אט */
+.chatContainer {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  background: #ffffff; /* Ensure all container backgrounds are white to match the bot panel */
+}
+
+/* אזור ההודעות */
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 25px;
+  width: 100%;
+
+  padding-bottom: 90px;
+
+  background: #ffffff; /* Ensure all container backgrounds are white to match the bot panel */
+}
+
+/* ===== BOT ===== */
+.botMsg {
+  align-self: flex-start;
+  background: #f3f4f6;
+  color: #111827;
+  padding: 14px 18px;
+  border-radius: 18px 18px 18px 6px;
+  max-width: 75%;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ===== USER ===== */
+.userMsg {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 18px 18px 6px 18px;
+  max-width: 75%;
+  box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
+  text-align: left;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ===== INPUT ===== */
+.inputRow {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+
+  padding: 12px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px solid #e5e7eb;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+}
+
+/* ===== BUTTONS ===== */
+.sendBtn {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.startBtn {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: white;
+  padding: 16px 26px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 700;
+}
+
+/* ===== LOADING ===== */
+.loadingOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95); /* Make loading overlay white-transparent but keep spinner visible */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid #60a5fa;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ===== TYPING ===== */
+.typingBubble {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #f3f4f6;
+  border-radius: 16px;
+  width: fit-content;
+}
+
+.typingBubble span {
+  width: 7px;
+  height: 7px;
+  background: #9ca3af;
+  border-radius: 50%;
+  animation: blink 1.2s infinite;
+}
+
+.typingBubble span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingBubble span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* ===== CHAT HEADER ===== */
+.chatHeader {
+  text-align: center;
+  margin-bottom: 20px;
+
+  padding: 24px 18px;
+  border-radius: 18px;
+
+  /* keep a clean white background and remove the framed border for a minimal look */
+  background: #ffffff;
+  border: none;
+  animation: fadeIn 0.4s ease;
+}
+
+/* כותרת ראשית */
+.chatTitle {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 900;
+
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* תיאור */
+.chatSubtitle {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+/* >>>>>>> origin/All */
+}
+
+.modeButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+  flex-wrap: nowrap; /* keep buttons on one line */
+  overflow-x: hidden; /* hide any overflow */
+  padding-bottom: 6px;
+
+  pointer-events: auto; /* ensure buttons are clickable when moved */
+  z-index: 10;
+}
+
+.modeBtn {
+  padding: 8px 12px;
+  min-width: 88px;
+  max-width: 120px;
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* allow pseudo and icon positioning */
+  gap: 8px;
+
+  pointer-events: auto; /* ensure button receives events */
+  z-index: 11;
+}
+
+.modeBtn .btnIcon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;
+  height:20px;
+}
+
+.modeBtn .btnLabel{
+  display:inline-block;
+  white-space:nowrap;
+}
+
+@media (max-width:420px) {
+  .modeBtn { min-width: 72px; font-size:14px }
+}
+
+.modeBtn::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0)
+  );
+
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.modeBtn:hover::before {
+  transform: translateX(100%);
+}
+
+.modeBtn:hover {
+  transform: translateY(-4px) scale(1.02);
+
+  box-shadow:
+    0 18px 34px rgba(96, 165, 250, 0.35),
+    0 10px 24px rgba(167, 139, 250, 0.25);
+}
+
+.modeBtn:active {
+  transform: scale(0.98);
+}
+
+.modeBtnWorkshop {
+  background: linear-gradient(135deg, #60a5fa, #818cf8);
+}
+
+.modeBtnDiagnoser {
+  background: linear-gradient(135deg, #a78bfa, #ec4899);
+}

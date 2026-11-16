@@ -1,0 +1,81 @@
+import { API_URL, MANAGER_EMAIL } from "../../config";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios"
+import { ProfilelogIn } from "../Profile/ProfileSlice";
+
+const initialState = {
+    thisUser: null,
+    statusUser: null
+}
+
+const headers = {
+    'Content-Type': 'application/json'
+}
+
+export const addLead = createAsyncThunk("addLead",
+    async (lead) => {
+        let data
+        await axios.post(`${API_URL}/Leads/Add`, lead,
+            {
+                headers: headers
+            }).then(res => {
+                data = res.data
+            })
+        return data
+    })
+
+const LogInSlice = createSlice({
+    name: "Customer",
+    initialState,
+    reducers: {
+        signOut: (state) => {
+            state.thisUser = null
+            state.statusUser = null
+        },
+        signIn: (state, action) => {
+            state.thisUser = action.payload
+            state.statusUser = "cust"
+        },
+        UpdateUser: (state, action) => {
+            state.thisUser = action.payload
+        },
+        logIn: (state, action) => {
+            let user = action.payload.user
+            user.mail = user.mail.toLowerCase()
+            const Customers = action.payload.Customers
+            const Diagnosers = action.payload.Diagnosers
+            const Leads = action.payload.Leads
+            const customer = Customers.find(c => c.mail == user.mail && c.password == user.password)
+            const lead = Leads.find(c => c.mail == user.mail && c.password == user.password)
+            if (customer != null) {
+                state.statusUser = "cust"
+                state.thisUser = customer
+            }
+            else if (lead != null) {
+                state.statusUser = "cust"
+                state.thisUser = lead
+            }
+            else {
+                const diagnoser = Diagnosers.find(c => c.mail == user.mail && c.password == user.password)
+                if (diagnoser != null && diagnoser.mail == MANAGER_EMAIL) {
+                    state.statusUser = "Esty"
+                    state.thisUser = diagnoser
+                }
+                else if (diagnoser != null) {
+                    state.statusUser = "diagnoser"
+                    state.thisUser = diagnoser
+                }
+            }
+            if (state.statusUser == null)
+                state.statusUser = "wrong"
+        }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(addLead.fulfilled, (state, action) => {
+            state.thisUser.code = action.payload
+        })
+    }
+})
+
+export const { signOut, signIn, logIn, UpdateUser } = LogInSlice.actions;
+export default LogInSlice.reducer;

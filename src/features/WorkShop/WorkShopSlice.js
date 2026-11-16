@@ -1,0 +1,194 @@
+import { API_URL } from "../../config";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios"
+
+const initialState = {
+    WorkShops: [],
+    Diagnosers: [],
+    WorkshopsOfDiag: [],
+    status: ""
+}
+
+const headers = {
+    'Content-Type': 'application/json'
+}
+
+export const InitWorkShops = createAsyncThunk("InitWorkShops",
+    async () => {
+        let data
+        await axios.get(`${API_URL}/api/WorkShops/ReadAll`).then(res => {
+            data = res.data
+        })
+        return data
+    })
+
+
+
+export const GetWorkShop = createAsyncThunk("GetWorkShop",
+    async (code) => {
+        let data
+        await axios.get(`${API_URL}/api/WorkShops/Read/` + code
+        ).then(res =>
+            data = res.data
+        )
+        return data
+    }
+)
+
+export const addWorkShop = createAsyncThunk("addWorkShop",
+    async (WorkShop) => {
+        await axios.post(`${API_URL}/api/WorkShops/Add`, WorkShop,
+            {
+                headers: headers
+            }).then(res => { WorkShop.code = res.data })
+        return WorkShop
+    })
+
+export const deleteWorkShop = createAsyncThunk("deleteWorkShop",
+    async (WorkShop) => {
+        await axios.delete(`${API_URL}/api/WorkShops/Delete`,
+            {
+                headers: headers,
+                data: WorkShop
+            }
+        ).then(res => { })
+        return WorkShop
+    })
+
+export const updateWorkShop = createAsyncThunk("updateWorkShop",
+    async (WorkShop) => {
+        await axios.put(`${API_URL}/api/WorkShops/Update`, WorkShop,
+            {
+                headers: headers
+            }
+        ).then(res => { })
+        return WorkShop
+    })
+
+
+export const getType = createAsyncThunk('getType',
+    async (workShop, { rejectWithValue }) => {
+        try {
+            const res = await axios.post(`${API_URL}/api/WorkShops/Type`, workShop, { headers });
+            return res.data;
+        } catch (err) {
+            return rejectWithValue(err.response?.data || err.message);
+        }
+    }
+);
+
+
+// export const GetWorkShop = createAsyncThunk("GetWorkShop",
+//     async (code) => {
+//         let data
+//         await axios.get(`${API_URL}/api/WorkShops/Read/` + code
+//         ).then(res =>
+//             data = res.data
+//         )
+//         return data
+//     }
+// )
+
+export const GetDiagnosersOfThisWorkshop = createAsyncThunk("GetDiagnosersOfThisWorkshop",
+    async (workshop) => {
+        let data
+        await axios.get(`${API_URL}/api/WorkShops/GetLDiagnosers/` + 
+            workshop.morfology + '/' + workshop.grafology + '/' + workshop.chirology + '/' + workshop.typeGroup)
+            .then(res =>
+                data = res.data
+            )
+        return data
+    }
+)
+
+export const GetDiagnosersOfConditions = createAsyncThunk("GetDiagnosersOfConditions",
+    async ({ c, g, m }) => {
+        let data
+        await axios.get(`${API_URL}/Diagnosers/GetDiagnosers/` + c + '/' + g + '/' + m)
+            .then(res =>
+                data = res.data
+            )
+        return data
+    }
+)
+
+export const GetWorkShops = createAsyncThunk("GetWorkShops",
+    async ({ c, g, m, typeGroup }) => {
+        let data
+        await axios.get(`${API_URL}/api/WorkShops/GetWorkShops/` + c + '/' + g + '/' + m + '/' + typeGroup)
+            .then(res =>
+                data = res.data
+            )
+        return data
+    }
+)
+
+
+const WorkShopSlice = createSlice({
+    name: "WorkShop",
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(InitWorkShops.pending, (state) => {
+                state.status = "loading"
+            })
+            .addCase(InitWorkShops.fulfilled, (state, action) => {
+                state.status = "succesfull"
+                state.WorkShops = action.payload;
+            })
+            .addCase(InitWorkShops.rejected, (state) => {
+                state.status = "faild"
+            })
+            .addCase(addWorkShop.fulfilled, (state, action) => {
+                state.status = "succesfull";
+                const workshop = action.payload;
+                state.WorkShops = [...state.WorkShops, workshop]// state.WorkShops.push(workshop)
+            })
+            .addCase(deleteWorkShop.fulfilled, (state, action) => {
+                state.status = "succesfull";
+                const workshop = action.payload;
+                state.WorkShops = state.WorkShops.filter(d => d.code != workshop.code)
+            })
+            .addCase(deleteWorkShop.pending, (state) => {
+                state.status = "loading"
+            })
+            .addCase(deleteWorkShop.rejected, (state) => {
+                state.status = "faild"
+            })
+            .addCase(updateWorkShop.fulfilled, (state, action) => {
+                const workshop = action.payload;
+                let i = state.WorkShops.findIndex(d => d.code === workshop.code)
+                state.WorkShops[i] = workshop
+            })
+            // .addCase(getType.fulfilled, (state, action) => {
+            //     InitWorkShops()
+            //     return action.payload
+            // })
+            // .addCase(getType.rejected, (state, action) => {
+            //     // return {ll:"lllllllllllll"}
+            // })
+            // .addCase(getType.fulfilled, (state, action) => {
+            // InitWorkShops()
+            // state.type = action.payload;
+            // })
+            .addCase(getType.rejected, (state, action) => {
+                state.error = action.payload;
+            })
+
+            .addCase(GetWorkShop.fulfilled, (state, action) => {
+                return action.payload;
+            })
+            .addCase(GetDiagnosersOfThisWorkshop.fulfilled, (state, action) => {
+                state.Diagnosers = action.payload;
+            })
+            .addCase(GetDiagnosersOfConditions.fulfilled, (state, action) => {
+                state.Diagnosers = action.payload;
+            })
+            .addCase(GetWorkShops.fulfilled, (state, action) => {
+                state.WorkshopsOfDiag = action.payload;
+            });
+    }
+})
+
+export default WorkShopSlice.reducer;

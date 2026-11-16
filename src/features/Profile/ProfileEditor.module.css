@@ -1,0 +1,323 @@
+/* --- WRAPPER --- */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
+  background: #ffffff; /* רקע לבן לעמוד */
+}
+
+/* --- PROFILE CONTAINER (CARD) --- */
+/* --- PROFILE CONTAINER (CARD) --- */
+.profileContainer {
+  background-color: white;
+  border: 2px solid #e5e7eb; /* הגבול החיצוני */
+  border-radius: 24px; /* קצת יותר עגול */
+  padding: 36px; /* יותר פנימיות */
+  max-width: 500px; /* גדול יותר */
+  font-family: 'Poppins', sans-serif;
+  direction: rtl;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.profileContainer:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(96,165,250,0.25);
+  border-color: #60a5fa; /* צבע הגבול משתנה בהובר */
+}
+
+.profileContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  border-radius: 24px; /* צריך להתאים ל-border-radius */
+  pointer-events: none; /* כדי שה־hover יעבוד על הכרטיס */
+}
+
+.profileContainer:hover::before {
+  opacity: 0.08; /* אפקט gradient עדין */
+}
+/* FIELD & CHECKBOXES */
+.fieldWrapper,
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.fieldLabel {
+  font-weight: bold;
+  margin-left: 10px;
+  color: #3b82f6; /* כחול נשמר */
+}
+
+.fieldValue {
+  background-color: #ffffff;
+  color: #111827;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 15px;
+  flex: 1;
+}
+
+.editableInput {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #3b82f6; /* כחול נשמר */
+  border-radius: 4px;
+  background-color: #e0e7ff;
+}
+
+.checkboxLabel {
+  margin-left: 8px;
+  color: #3b82f6;
+  font-size: 14px;
+}
+
+.checkboxContainer input[type="checkbox"] {
+  accent-color: #16a34a;
+}
+
+/* --- BUTTONS --- */
+.buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.profileButton {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* transition לכל הכפתורים */
+}
+
+.profileButton.edit {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: white;
+}
+
+.profileButton.cancelButton {
+  background-color: #ef4444;
+  color: white;
+}
+
+.profileButton.save {
+  background-color: #16a34a;
+  color: white;
+}
+
+/* Hover על כפתורים - גדילה */
+.profileButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(96,165,250,0.3);
+}
+
+/* --- PAYMENT SECTION --- */
+.paymentSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 300px;
+  margin-right: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.paymentSection h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.paymentSection input {
+  padding: 6px;
+  margin: 6px 0 12px 0;
+  border-radius: 4px;
+  border: 1px solid #3b82f6;
+  background-color: #ffffff;
+  transition: all 0.3s ease; /* transition ל-input אם נרצה hover בעתיד */
+}
+
+.paymentSection button {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #16a34a;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paymentSection button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(96,165,250,0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.paymentSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 320px;
+  margin-right: 150px;
+  padding: 18px 16px;
+
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff, #f0f9ff);
+
+  border: 1px solid rgba(96, 165, 250, 0.25);
+
+  box-shadow:
+    0 10px 25px rgba(96, 165, 250, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+
+  animation: paymentFadeIn 0.5s ease-out;
+}
+
+/* אפקט אור זז עדין */
+.paymentSection::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 140px;
+  height: 140px;
+
+  background: radial-gradient(
+    circle,
+    rgba(96, 165, 250, 0.25),
+    transparent 70%
+  );
+
+  filter: blur(18px);
+  opacity: 0.6;
+}
+
+/* Hover מתקדם */
+.paymentSection:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 45px rgba(96, 165, 250, 0.18),
+    0 0 0 1px rgba(96, 165, 250, 0.3);
+}
+
+/* כותרת */
+.paymentSection h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #2563eb;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+/* יתרה */
+.paymentSection div {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 10px;
+
+  background: rgba(96, 165, 250, 0.08);
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+/* input */
+.paymentSection input {
+  padding: 8px 10px;
+  margin: 6px 0 12px 0;
+
+  border-radius: 10px;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+
+  background: white;
+
+  transition: all 0.25s ease;
+}
+
+.paymentSection input:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+/* כפתור */
+.paymentSection button {
+  width: 100%;
+  padding: 9px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.25);
+}
+
+.paymentSection button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+}
+
+/* אנימציה כניסה */
+@keyframes paymentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

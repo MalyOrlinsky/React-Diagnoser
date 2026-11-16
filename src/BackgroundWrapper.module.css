@@ -1,0 +1,29 @@
+/* BackgroundWrapper.module.css */
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* רקע לבן מלא */
+.background {
+  position: fixed;
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #ffffff;
+
+  z-index: 0;
+}
+
+/* תוכן מעל הרקע */
+.content {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  min-height: 100vh;
+}
