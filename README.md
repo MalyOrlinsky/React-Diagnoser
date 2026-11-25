@@ -18,7 +18,7 @@
 
 <br/>
 
-[⚙️ צד השרת (ASP.NET Core)](https://github.com/Tauman-Chaya/C----Diagnoser) · [🎬 דמו](#-דמו-בוט-ה-ai-בפעולה) · [🏗️ ארכיטקטורה](#-ארכיטקטורה) · [🔐 הרשאות](#-ממשק-מבוסס-תפקידים) · [📸 צילומי מסך](#-צילומי-מסך) · [🚀 הרצה](#-התקנה-והרצה)
+[⚙️ צד השרת (ASP.NET Core)](https://github.com/MalyOrlinsky/C--Diagnoser) · [🎬 דמו](#-דמו-בוט-ה-ai-בפעולה) · [🏗️ ארכיטקטורה](#-ארכיטקטורה) · [🔐 הרשאות](#-ממשק-מבוסס-תפקידים) · [📸 צילומי מסך](#-צילומי-מסך) · [🚀 הרצה](#-התקנה-והרצה)
 
 </div>
 
@@ -29,7 +29,7 @@
 ## 📌 על הפרויקט
 
 **Diagnoser** היא מערכת **Full-Stack** לניהול עסק של אבחונים וסדנאות בתחומי **מורפולוגיה**, **גרפולוגיה** ו**כירולוגיה**.
-הריפו הזה הוא צד הלקוח: **SPA** ב-**React 18**, עם ניהול מצב מרכזי ב-**Redux Toolkit**, שמתחבר ל-[Web API ב-ASP.NET Core](https://github.com/Tauman-Chaya/C----Diagnoser).
+הריפו הזה הוא צד הלקוח: **SPA** ב-**React 18**, עם ניהול מצב מרכזי ב-**Redux Toolkit**, שמתחבר ל-[Web API ב-ASP.NET Core](https://github.com/MalyOrlinsky/C--Diagnoser).
 
 הממשק מתאים את עצמו למי שמחוברת: **לקוחה**, **מאבחנת** או **מנהלת**. לכל אחת יש תפריט, מסכים ופעולות משלה. **בוט AI** מלווה את כל המשתמשות, ועוזר למצוא סדנה או מאבחנת בתוך שניות.
 
@@ -243,7 +243,7 @@ flowchart LR
 
 ## 📸 צילומי מסך
 
-> הצילומים מוצגים עם [נתוני הדמה](https://github.com/Tauman-Chaya/C----Diagnoser/blob/main/Database/schema.sql) של השרת.
+> הצילומים מוצגים עם [נתוני הדמה](https://github.com/MalyOrlinsky/C--Diagnoser/blob/main/Database/schema.sql) של השרת.
 
 </div>
 
@@ -337,14 +337,14 @@ React---Diagnoser/
 ### דרישות מקדימות
 
 - [Node.js](https://nodejs.org/) גרסה 18 ומעלה
-- [צד השרת](https://github.com/Tauman-Chaya/C----Diagnoser) רץ בכתובת `https://localhost:7082` (ההוראות ב-README שלו)
+- [צד השרת](https://github.com/MalyOrlinsky/C--Diagnoser) רץ בכתובת `https://localhost:7082` (ההוראות ב-README שלו)
 
 ### 1. שכפול והתקנה
 
 </div>
 
 ```bash
-git clone https://github.com/Tauman-Chaya/React---Diagnoser.git
+git clone https://github.com/MalyOrlinsky/React-Diagnoser.git
 cd React---Diagnoser
 npm install
 ```
@@ -382,7 +382,7 @@ npm start
 | תפקיד | מייל |
 |---|---|
 | 👑 מנהלת | `esty@2024` |
-| 👩‍⚕️ מאבחנת | ראו טבלת `Diagnosers` ב-[schema.sql](https://github.com/Tauman-Chaya/C----Diagnoser/blob/main/Database/schema.sql) |
+| 👩‍⚕️ מאבחנת | ראו טבלת `Diagnosers` ב-[schema.sql](https://github.com/MalyOrlinsky/C--Diagnoser/blob/main/Database/schema.sql) |
 
 > 💡 `DISABLE_ESLINT_PLUGIN=true` ב-`.env` מכבה את בדיקת ה-ESLint של create-react-app בזמן הריצה, כי היא לא תואמת ל-Node 24.
 
@@ -392,8 +392,8 @@ npm start
 
 | | ריפו | תיאור |
 |:---:|---|---|
-| ⚙️ | **[C----Diagnoser](https://github.com/Tauman-Chaya/C----Diagnoser)** | צד השרת: ASP.NET Core 8 Web API, ‏N-Tier, ‏EF Core, מנוע ה-AI |
-| 🎨 | **[React---Diagnoser](https://github.com/Tauman-Chaya/React---Diagnoser)** | צד הלקוח: React 18, ‏Redux Toolkit, יומן עברי, בוט AI *(אתם כאן)* |
+| ⚙️ | **[C----Diagnoser](https://github.com/MalyOrlinsky/C--Diagnoser)** | צד השרת: ASP.NET Core 8 Web API, ‏N-Tier, ‏EF Core, מנוע ה-AI |
+| 🎨 | **[React---Diagnoser](https://github.com/MalyOrlinsky/React-Diagnoser)** | צד הלקוח: React 18, ‏Redux Toolkit, יומן עברי, בוט AI *(אתם כאן)* |
 
 <br/>
 
